@@ -32,6 +32,8 @@ export default function HeroSection() {
         ></div>
       ))}
 
+      
+
       {/* 🔹 Overlay */}
       <div className="overlay"></div>
 
