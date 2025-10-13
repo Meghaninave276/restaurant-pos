@@ -1,15 +1,35 @@
+// import { StrictMode } from 'react'
+// import { createRoot } from 'react-dom/client'
+// import './index.css'
+// import App from './App.jsx'
+// import {Provider} from 'react-redux'
+// import store from './store/store.js'
+// import { BrowserRouter } from 'react-router-dom'
+
+// createRoot(document.getElementById('root')).render(
+
+//   <Provider store={store}>
+//     <App/>
+//   </Provider>
+
+// )
+
+
 import { StrictMode } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import {Provider} from 'react-redux'
-import store from './store/store.js'
-import { BrowserRouter } from 'react-router-dom'
 
-createRoot(document.getElementById('root')).render(
+// import {Provider} from 'react-redux'
+// import store from './store/store.js'
 
-  <Provider store={store}>
-    <App/>
-  </Provider>
+createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+   
+);
 
-)
+
+
