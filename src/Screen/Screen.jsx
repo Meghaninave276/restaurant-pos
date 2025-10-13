@@ -12,7 +12,7 @@ function Screen() {
       <main className="main-content">
         <Routes>
           <Route index element={<Dashboard />} />
-          <Route path="/addmenu" element={<AddMenu />} />
+          
           
           <Route path="/orders" element={<h1>Food Orders</h1>} />
           <Route path="/feedback" element={<h1>Feedback</h1>} />
