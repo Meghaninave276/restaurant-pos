@@ -32,40 +32,44 @@ export default function HeroSection() {
         ></div>
       ))}
 
-      
-
       {/* 🔹 Overlay */}
       <div className="overlay"></div>
 
       {/* 🔹 Hero Content */}
       <div className="hero-content text-center">
-        <h1>Maharaja Palace</h1>
-        <p>Experience Royal Dining Like Never Before</p>
-        <button className="btn-start" onClick={() => navigate("/login")}>
+        <h1 className="hero-title animate-fade">MAHARAJ PALACE</h1>
+        <p className="hero-subtitle animate-fade-delay">
+          Experience Royal Dining Like Never Before
+        </p>
+        <button
+          className="btn-start animate-fade-btn"
+          onClick={() => navigate("/login")}
+        >
           Get Started
         </button>
       </div>
 
       {/* 🔹 Features Section */}
-      <div className="features-section container">
-        <div className="row justify-content-center g-4">
-          <div className="col-10 col-sm-8 col-md-4 col-lg-3 feature-card">
-            <div className="icon">🍽️</div>
-            <h4>Fast Order Entry</h4>
-            <p>Take dine-in and takeaway orders seamlessly.</p>
-          </div>
-          <div className="col-10 col-sm-8 col-md-4 col-lg-3 feature-card">
-            <div className="icon">🧾</div>
-            <h4>Billing Made Simple</h4>
-            <p>Generate accurate bills instantly with one click.</p>
-          </div>
-          <div className="col-10 col-sm-8 col-md-4 col-lg-3 feature-card">
-            <div className="icon">📊</div>
-            <h4>Detailed Analytics</h4>
-            <p>Track sales and performance with smart reports.</p>
-          </div>
+      <div className="features-container">
+        <div className="feature-card">
+          <i className="ri-restaurant-2-line"></i>
+          <h4>Smart Order System</h4>
+          <p>Seamlessly take dine-in and takeaway orders.</p>
+        </div>
+        <div className="feature-card">
+          <i className="ri-bill-line"></i>
+          <h4>Instant Billing</h4>
+          <p>Generate accurate bills instantly with one tap.</p>
+        </div>
+        <div className="feature-card">
+          <i className="ri-bar-chart-box-line"></i>
+          <h4>Sales Analytics</h4>
+          <p>Track your restaurant’s growth in real time.</p>
         </div>
       </div>
     </div>
   );
 }
+
+
+//
