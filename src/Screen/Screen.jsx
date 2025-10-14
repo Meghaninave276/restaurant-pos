@@ -11,6 +11,7 @@ function Screen() {
       <Sidebar />
       <main className="main-content">
         <Routes>
+          
           <Route index element={<Dashboard />} />
           
           

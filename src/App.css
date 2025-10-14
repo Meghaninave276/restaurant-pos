@@ -4,3 +4,9 @@
     padding: 0%;
     box-sizing: border-box;
 }
+body
+{
+    height: auto;
+    width: 100%;
+    background-color: aquamarine;
+}

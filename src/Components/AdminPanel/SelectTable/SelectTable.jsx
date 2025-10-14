@@ -5,6 +5,7 @@ export default function SelectTable() {
   const navigate = useNavigate();
 
   const handleSelect = (tableNumber) => {
+    // ✅ Corrected path ("dashboards", not "dashboard")
     navigate("/dashboards/customer-info", { state: { table: tableNumber } });
   };
 
