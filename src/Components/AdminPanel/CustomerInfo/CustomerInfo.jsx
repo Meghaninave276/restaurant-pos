@@ -20,7 +20,7 @@ export default function CustomerInfo() {
 
 
 
-    //
+  
     console.log("Customer Info:", { ...form, table });
     navigate("/dashboards/order", { state: { ...form, table } });
   };
