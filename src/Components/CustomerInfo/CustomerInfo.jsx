@@ -7,7 +7,11 @@ export default function CustomerInfo() {
 
   const table = location.state?.table || "Not Selected";
 
-  const [form, setForm] = useState({ name: "", phone: "", notes: "" });
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    notes: "",
+  });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,8 +23,11 @@ export default function CustomerInfo() {
       alert("Please fill all required fields.");
       return;
     }
+
     console.log("Customer Info:", { ...form, table });
-    navigate("/dashboards/order", { state: { ...form, table } });
+
+    // Navigate to next page (Order) with state
+    navigate("/dashboard/order", { state: { ...form, table } });
   };
 
   return (
@@ -30,15 +37,29 @@ export default function CustomerInfo() {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
-          <input type="text" name="name" value={form.name} onChange={handleChange} />
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Phone:</label>
-          <input type="tel" name="phone" value={form.phone} onChange={handleChange} />
+          <input
+            type="tel"
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Notes:</label>
-          <textarea name="notes" value={form.notes} onChange={handleChange} />
+          <textarea
+            name="notes"
+            value={form.notes}
+            onChange={handleChange}
+          />
         </div>
         <button type="submit">Next ➡️</button>
       </form>

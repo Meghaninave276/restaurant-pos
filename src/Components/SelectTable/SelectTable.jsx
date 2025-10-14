@@ -5,7 +5,8 @@ export default function SelectTable() {
   const navigate = useNavigate();
 
   const handleSelect = (tableNumber) => {
-    navigate("/dashboards/customer-info", { state: { table: tableNumber } });
+    // Pass table info to CustomerInfo
+    navigate("/dashboard/customer-info", { state: { table: tableNumber } });
   };
 
   return (
