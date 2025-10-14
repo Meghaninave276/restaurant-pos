@@ -17,6 +17,10 @@ export default function CustomerInfo() {
       return;
     }
 
+
+
+
+    //
     console.log("Customer Info:", { ...form, table });
     navigate("/dashboards/order", { state: { ...form, table } });
   };
