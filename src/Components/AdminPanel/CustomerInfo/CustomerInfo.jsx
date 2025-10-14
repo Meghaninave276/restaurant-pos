@@ -48,7 +48,13 @@ export default function CustomerInfo() {
           <label>Notes: </label>
           <textarea name="notes" value={form.notes} onChange={handleChange} />
         </div>
-        <button type="submit">Next ➡️</button>
+        <button type="submit">Next    
+          
+          
+          
+          
+          
+          ➡️</button>
       </form>
     </div>
   );
