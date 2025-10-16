@@ -153,6 +153,12 @@ return (
       <input type="number" name="salary" placeholder="Salary" value={form.salary} onChange={handleChange} required /> <br /><br />
       <input type="number" name="totalSales" placeholder="Total Sales" value={form.totalSales} onChange={handleChange} required /> <br /><br />
       <input type="number" name="totalOrders" placeholder="Total Orders" value={form.totalOrders} onChange={handleChange} required /> <br /><br />
+       <input
+        type="text"
+        placeholder="Image URL"
+        value={form.image}
+        onChange={handleChange}
+      />
       <button type="submit">{editingId ? "Update" : "Add"}</button>
     </form>
   </div>

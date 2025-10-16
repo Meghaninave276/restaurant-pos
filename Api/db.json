@@ -1423,7 +1423,7 @@
       "salary": "18002",
       "totalSales": 95000,
       "code": "EMP002",
-      "image":"https://i.pinimg.com/736x/56/94/e1/5694e173bb4a740507c234167c609479.jpg",
+      "image": "https://i.pinimg.com/736x/56/94/e1/5694e173bb4a740507c234167c609479.jpg",
       "totalOrders": 160
     },
     {
@@ -1435,7 +1435,7 @@
       "contact": "+91 9988776655",
       "salary": "19500",
       "totalSales": 102000,
-      "image":"https://i.pinimg.com/736x/44/c9/87/44c98747e3933a3a8a5be157c7ebb101.jpg",
+      "image": "https://i.pinimg.com/736x/44/c9/87/44c98747e3933a3a8a5be157c7ebb101.jpg",
       "code": "EMP004",
       "totalOrders": 155
     },
@@ -1448,7 +1448,7 @@
       "contact": "+91 9811122233",
       "salary": 18500,
       "totalSales": 111000,
-       "image":"https://i.pinimg.com/736x/c3/ee/a2/c3eea2f9f5a1bb44374d81d7b830aca1.jpg",
+      "image": "https://i.pinimg.com/736x/c3/ee/a2/c3eea2f9f5a1bb44374d81d7b830aca1.jpg",
       "code": "EMP005",
       "totalOrders": 175
     },
@@ -1459,7 +1459,7 @@
       "email": "anita@urbanspice.com",
       "password": "waiter123",
       "contact": "+91 9877700011",
-       "image":"https://i.pinimg.com/736x/0e/bd/b9/0ebdb9f8cb628dc5224bd2f84a2ff9e2.jpg",
+      "image": "https://i.pinimg.com/736x/0e/bd/b9/0ebdb9f8cb628dc5224bd2f84a2ff9e2.jpg",
       "salary": 18500,
       "totalSales": 96000,
       "code": "EMP006",
@@ -1472,7 +1472,7 @@
       "email": "deepak@urbanspice.com",
       "password": "waiter123",
       "contact": "+91 9755512345",
-       "image":"https://i.pinimg.com/736x/c7/9a/37/c79a37e13ef14be556b51143bcbb1b01.jpg",
+      "image": "https://i.pinimg.com/736x/c7/9a/37/c79a37e13ef14be556b51143bcbb1b01.jpg",
       "salary": 17500,
       "totalSales": 89000,
       "code": "EMP007",
@@ -1485,7 +1485,7 @@
       "email": "kavita@urbanspice.com",
       "password": "waiter123",
       "contact": "+91 9992233445",
-       "image":"https://i.pinimg.com/736x/bb/74/36/bb7436d3c12733baa66d6b5c25f34897.jpg",
+      "image": "https://i.pinimg.com/736x/bb/74/36/bb7436d3c12733baa66d6b5c25f34897.jpg",
       "salary": 18200,
       "totalSales": 115000,
       "code": "EMP008",
@@ -1498,7 +1498,7 @@
       "email": "rohan@urbanspice.com",
       "password": "waiter123",
       "contact": "+91 9122233344",
-       "image":"https://i.pinimg.com/736x/e9/c5/1a/e9c51a0a6819c3b0032b44c46fd199b0.jpg",
+      "image": "https://i.pinimg.com/736x/e9/c5/1a/e9c51a0a6819c3b0032b44c46fd199b0.jpg",
       "salary": 18000,
       "totalSales": 97000,
       "code": "EMP009",
@@ -1510,11 +1510,24 @@
       "email": "rina@gmail.com",
       "password": "rina456",
       "contact": "7896541236",
-       "image":"https://i.pinimg.com/1200x/73/88/c9/7388c9216eaace7531d906d86ec58a16.jpg",
+      "image": "https://i.pinimg.com/1200x/73/88/c9/7388c9216eaace7531d906d86ec58a16.jpg",
       "salary": "15000",
       "totalSales": "0",
       "totalOrders": "0",
       "code": "EMP013",
+      "role": "employee"
+    },
+    {
+      "id": "352a",
+      "name": "rehan sharma",
+      "email": "rehan@gmail.com",
+      "password": "rehan753",
+      "contact": "4569871478",
+      "salary": "20000",
+      "totalSales": "0",
+      "totalOrders": "0",
+      "code": "EMP014",
+      "": "https://i.pinimg.com/1200x/06/17/8e/06178ea2726a517ee679c5785611e6b7.jpg",
       "role": "employee"
     }
   ]
