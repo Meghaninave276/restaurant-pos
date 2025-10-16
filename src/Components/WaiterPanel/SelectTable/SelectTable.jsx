@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SelectTable.css";
 
 export default function SelectTable() {
+  const navigate = useNavigate();
+
   const tables = [
     { id: 1, name: "Table 1", status: "Available", seats: 2 },
     { id: 2, name: "Table 2", status: "Occupied", seats: 4 },
@@ -19,11 +21,20 @@ export default function SelectTable() {
   ];
 
   const [selected, setSelected] = useState(null);
-  const navigate = useNavigate();
+
+  // ✅ Load saved selection
+  useEffect(() => {
+    const savedTable = localStorage.getItem("selectedTable");
+    if (savedTable) setSelected(JSON.parse(savedTable));
+  }, []);
+
+  // ✅ Save selection
+  useEffect(() => {
+    if (selected) localStorage.setItem("selectedTable", JSON.stringify(selected));
+  }, [selected]);
 
   const handleNext = () => {
     if (selected) {
-      // ✅ Send table id & name to CustomerInfo page
       navigate("/dashboard/customer-info", { state: { table: selected } });
     } else {
       alert("⚠️ Please select a table first!");
@@ -31,10 +42,10 @@ export default function SelectTable() {
   };
 
   return (
-    <div className="step-container">
-      <h2 className="step-title">🥇 Step 1: Select Table</h2>
-      <p className="step-subtitle">
-        Choose an available table to start taking the customer’s order.
+    <div className="select-table-page">
+      <h2 className="page-title">Maharaja Palace - Table Selection</h2>
+      <p className="subtitle">
+        🍽️ Choose an available table to continue taking orders.
       </p>
 
       <div className="table-grid">
@@ -42,14 +53,15 @@ export default function SelectTable() {
           <div
             key={t.id}
             className={`table-card 
-              ${selected === t.id ? "selected" : ""} 
+              ${selected?.id === t.id ? "selected" : ""} 
               ${t.status === "Available" ? "available" : "occupied"}
             `}
-            onClick={() => t.status === "Available" && setSelected(t.id)}
+            onClick={() =>
+              t.status === "Available" && setSelected({ id: t.id, name: t.name })
+            }
           >
-            <h4>🪑 {t.name}</h4>
-            <p>
-              <strong>Status:</strong>{" "}
+            <div className="table-header">
+              <h4>{t.name}</h4>
               <span
                 className={`status-badge ${
                   t.status === "Available" ? "green" : "red"
@@ -57,16 +69,21 @@ export default function SelectTable() {
               >
                 {t.status}
               </span>
-            </p>
-            <p>💺 Seats: {t.seats}</p>
+            </div>
+            <p className="seats-info">💺 Seats: {t.seats}</p>
           </div>
         ))}
       </div>
 
       {selected && (
-        <button className="next-btn" onClick={handleNext}>
-          Next ➡️
-        </button>
+        <div className="footer-bar">
+          <p>
+            ✅ Selected: <strong>{selected.name}</strong>
+          </p>
+          <button className="next-btn" onClick={handleNext}>
+            Proceed ➜
+          </button>
+        </div>
       )}
     </div>
   );

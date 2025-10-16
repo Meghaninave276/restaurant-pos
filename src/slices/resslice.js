@@ -12,18 +12,27 @@ export const fetchUsers = createAsyncThunk("restaurant/fetchUsers", async () => 
   const res = await axios.get("http://localhost:3000/users");
   return res.data;
 });
-
+const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
 const resSlice = createSlice({
+  
   name: "restaurant",
   initialState: {
     menu: [],
     users: [],
+   orders: savedOrders,
     isLoading: false,
     error: null,
   },
   reducers: {
     addMenuItem: (state, action) => {
       state.menu.push(action.payload);
+    },
+    addOrder: (state, action) => {
+      state.orders.push(action.payload); 
+      localStorage.setItem("orders", JSON.stringify(state.orders));// <-- store order here
+    },
+     fetchMenuSuccess: (state, action) => {
+      state.menu = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -45,5 +54,5 @@ const resSlice = createSlice({
   },
 });
 
-export const { addMenuItem } = resSlice.actions;
+export const { addMenuItem,addOrder,fetchMenuSuccess} = resSlice.actions;
 export default resSlice.reducer;
