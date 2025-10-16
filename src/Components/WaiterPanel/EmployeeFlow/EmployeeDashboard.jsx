@@ -23,77 +23,79 @@ export default function EmployeeDashboard() {
   return (
     <div className="dashboard-layout">
       {/* 🌟 Sidebar - fixed */}
-      <aside className="sidebar">
-        <div className="sidebar-top">
-          <div className="brand">
-            <img src={img1} alt="Logo" className="logo" />
-          </div>
+    <aside className="sidebar">
+  {/* 🌟 Logo at the top */}
+  <div className="brand">
+    <img src={img1} alt="Logo" className="logo" />
+  </div>
 
-          <nav className="menu">
-            <button
-              onClick={() => navigate("/dashboard/select-table")}
-              className={isActive("/dashboard/select-table") ? "active" : ""}
-            >
-              <RiDashboardLine /> <span>Select Table</span>
-            </button>
+  {/* 🌟 Menu */}
+  <nav className="menu">
+    <button
+      onClick={() => navigate("/dashboard/select-table")}
+      className={isActive("/dashboard/select-table") ? "active" : ""}
+    >
+      <RiDashboardLine /> <span>Select Table</span>
+    </button>
 
-            <button
-              onClick={() => navigate("/dashboard/customer-info")}
-              className={isActive("/dashboard/customer-info") ? "active" : ""}
-            >
-              <RiFileList2Line /> <span>Customer Info</span>
-            </button>
+    <button
+      onClick={() => navigate("/dashboard/customer-info")}
+      className={isActive("/dashboard/customer-info") ? "active" : ""}
+    >
+      <RiFileList2Line /> <span>Customer Info</span>
+    </button>
 
-            <button
-              onClick={() => navigate("/dashboard/take-order")}
-              className={isActive("/dashboard/take-order") ? "active" : ""}
-            >
-              <RiUserLine /> <span>Take Order</span>
-            </button>
+    <button
+      onClick={() => navigate("/dashboard/take-order")}
+      className={isActive("/dashboard/take-order") ? "active" : ""}
+    >
+      <RiUserLine /> <span>Take Order</span>
+    </button>
 
-            <button
-              onClick={() => navigate("/dashboard/update-order")}
-              className={isActive("/dashboard/update-order") ? "active" : ""}
-            >
-              <RiRepeatLine /> <span>Update Order</span>
-            </button>
+    <button
+      onClick={() => navigate("/dashboard/update-order")}
+      className={isActive("/dashboard/update-order") ? "active" : ""}
+    >
+      <RiRepeatLine /> <span>Update Order</span>
+    </button>
 
-            <button
-              onClick={() => navigate("/dashboard/modify-order")}
-              className={isActive("/dashboard/modify-order") ? "active" : ""}
-            >
-              <RiEdit2Line /> <span>Modify Order</span>
-            </button>
+    <button
+      onClick={() => navigate("/dashboard/modify-order")}
+      className={isActive("/dashboard/modify-order") ? "active" : ""}
+    >
+      <RiEdit2Line /> <span>Modify Order</span>
+    </button>
 
-            <button
-              onClick={() => navigate("/dashboard/invoice")}
-              className={isActive("/dashboard/invoice") ? "active" : ""}
-            >
-              <RiBillLine /> <span>Invoice</span>
-            </button>
+    <button
+      onClick={() => navigate("/dashboard/invoice")}
+      className={isActive("/dashboard/invoice") ? "active" : ""}
+    >
+      <RiBillLine /> <span>Invoice</span>
+    </button>
 
-            <button
-              onClick={() => navigate("/dashboard/history")}
-              className={isActive("/dashboard/history") ? "active" : ""}
-            >
-              <RiHistoryLine /> <span>History</span>
-            </button>
+    <button
+      onClick={() => navigate("/dashboard/history")}
+      className={isActive("/dashboard/history") ? "active" : ""}
+    >
+      <RiHistoryLine /> <span>History</span>
+    </button>
 
-            <button
-              onClick={() => navigate("/dashboard/settings")}
-              className={isActive("/dashboard/settings") ? "active" : ""}
-            >
-              <RiSettings3Line /> <span>Settings</span>
-            </button>
-          </nav>
-        </div>
+    <button
+      onClick={() => navigate("/dashboard/settings")}
+      className={isActive("/dashboard/settings") ? "active" : ""}
+    >
+      <RiSettings3Line /> <span>Settings</span>
+    </button>
+  </nav>
 
-        <div className="logout">
-          <button onClick={() => navigate("/login")}>
-            <RiLogoutCircleRLine /> <span>Logout</span>
-          </button>
-        </div>
-      </aside>
+  {/* 🌟 Logout at bottom */}
+  <div className="logout">
+    <button onClick={() => navigate("/login")}>
+      <RiLogoutCircleRLine /> <span>Logout</span>
+    </button>
+  </div>
+</aside>
+
 
       {/* 🧾 Main Content Area */}
       <main className="main-content">

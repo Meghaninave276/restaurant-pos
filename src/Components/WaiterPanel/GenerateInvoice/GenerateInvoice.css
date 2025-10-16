@@ -1,0 +1,61 @@
+.invoice-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.invoice-card {
+  background: #fff;
+  padding: 20px;
+  width: 700px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.invoice-info p {
+  margin: 2px 0;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.invoice-total {
+  margin-top: 15px;
+  font-size: 18px;
+  text-align: right;
+}
+
+.thank-you {
+  text-align: center;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+.invoice-actions button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.print-btn {
+  background-color: #ffc107;
+}
+
+.back-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
