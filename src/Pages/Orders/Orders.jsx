@@ -1,5 +1,5 @@
-import React from "react";
 import { useSelector } from "react-redux";
+import "./Orders.css";
 
 export default function Orders() {
   const { orders } = useSelector((state) => state.restaurant);
@@ -12,20 +12,19 @@ export default function Orders() {
       ) : (
         <div className="list-group">
           {orders.map((order) => (
-            <div key={order.id} className="list-group-item mb-3">
-              <h5>Order ID: {order.id}</h5>
-              <p>Customer: {order.customer.name}</p>
-              <p>Table: {order.customer.table}</p>
-              <p>Time: {order.time}</p>
-             
+            <div key={order.time} className="list-group-item mb-3">
+              <h5>Order ID: {order.time}</h5>
+              <p>Customer: {order.customerInfo?.customerName}</p>
+              <p>Table: {order.customerInfo?.tableNo}</p>
               <ul>
-                {order.items.map((item) => (
-                  <li key={item.id}>
-                    {item.food_name} x {item.quantity} - ₹{item.price.toFixed(2)}
+                {order.orderItems.map((item, idx) => (
+                  <li key={idx}>
+                    {item.food_name} x {item.qty} - ₹{item.price * item.qty}
                   </li>
                 ))}
               </ul>
-              <p>Total: ₹{order.total.toFixed(2)}</p>
+              <p>Total: ₹{order.total}</p>
+              <p>Status: {order.status}</p>
             </div>
           ))}
         </div>

@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "./ModifyOrder.css";
 
 export default function ModifyOrder() {
   const navigate = useNavigate();
   const [order, setOrder] = useState(null);
   const [updatedOrder, setUpdatedOrder] = useState(null);
+ 
 
   // ✅ Load the order to modify from localStorage
   useEffect(() => {
+    const savedOrder = JSON.parse(localStorage.getItem("modifyOrder"));
+    if (savedOrder) {
+      setOrder(savedOrder);
+      setUpdatedOrder(savedOrder);
+    }
+  }, []);
+    useEffect(() => {
     const savedOrder = JSON.parse(localStorage.getItem("modifyOrder"));
     if (savedOrder) {
       setOrder(savedOrder);
@@ -58,7 +67,7 @@ export default function ModifyOrder() {
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
 
     alert("✅ Order updated successfully!");
-    navigate("/dashboard/update-status");
+    navigate("/dashboard/invoice");
   };
 
   if (!updatedOrder) return <p>Loading order...</p>;
@@ -100,7 +109,7 @@ export default function ModifyOrder() {
 
       <div className="actions">
         <button className="save-btn" onClick={handleSave}>💾 Save Changes</button>
-        <button className="cancel-btn" onClick={() => navigate(-1)}>↩ Back</button>
+        <button className="cancel-btn" onClick={() => navigate("/dashboard/invoice")}> Next ➜</button>
       </div>
     </div>
   );

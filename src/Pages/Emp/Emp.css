@@ -6,12 +6,19 @@ div {
   color: #333;
 }
 
+div h2
+{
+  text-align: center;
+  margin-top: -10px;
+}
 /* Employee Table */
 table {
   border-collapse: collapse;
-  width: 100%;
+max-width: 1220px;
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ 
+ 
 }
 
 th, td {

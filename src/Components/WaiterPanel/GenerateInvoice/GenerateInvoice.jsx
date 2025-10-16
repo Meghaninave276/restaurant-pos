@@ -74,7 +74,7 @@ export default function GenerateInvoice() {
 
       <div className="invoice-actions">
         <button className="print-btn" onClick={handlePrint}>🖨️ Print / Save PDF</button>
-        <button className="back-btn" onClick={() => navigate(-1)}>↩ Back</button>
+        <button className="back-btn" onClick={() => navigate("/dashboard/select-table")}>↩ Back</button>
       </div>
     </div>
   );

@@ -56,15 +56,26 @@ export default function TakeOrder() {
       }, {})
     : { [activeCategory]: formattedMenu[activeCategory] || [] };
 
+  // Calculate price with tax and discount
+  const calculatePrice = (item) => {
+    const basePrice = item.price;
+    const taxAmount = basePrice * (item.tax_rate / 100 || 0);
+    const discountAmount = basePrice * (item.discount / 100 || 0);
+    const priceAfterTax = basePrice + taxAmount;
+    const priceAfterDiscount = priceAfterTax - discountAmount;
+    return { basePrice, priceAfterTax, priceAfterDiscount };
+  };
+
   // Add/update/remove items in order
   const handleAdd = (item) => {
+    const { priceAfterDiscount } = calculatePrice(item);
     const existing = orderItems.find((i) => i.food_name === item.food_name);
     if (existing) {
       setOrderItems(orderItems.map((i) =>
         i.food_name === item.food_name ? { ...i, qty: i.qty + 1 } : i
       ));
     } else {
-      setOrderItems([...orderItems, { ...item, qty: 1 }]);
+      setOrderItems([...orderItems, { ...item, qty: 1, price: priceAfterDiscount }]);
     }
   };
 
@@ -148,21 +159,31 @@ export default function TakeOrder() {
                 {filteredData[cat].length === 0 ? (
                   <p className="text-muted text-center">No dishes found...</p>
                 ) : (
-                  filteredData[cat].map((item) => (
-                    <div key={item.id} className="menu-card fade-in">
-                      <img src={item.image1} alt={item.food_name} className="menu-img" />
-                      <div className="menu-text">
-                        <h5 className="menu-name">{item.food_name}</h5>
-                        <p className="menu-desc">{item.description}</p>
+                  filteredData[cat].map((item) => {
+                    const { basePrice, priceAfterTax, priceAfterDiscount } = calculatePrice(item);
+                    return (
+                      <div key={item.id} className="menu-card fade-in">
+                        <img src={item.image1} alt={item.food_name} className="menu-img" />
+                        <div className="menu-text">
+                          <h5 className="menu-name">{item.food_name}</h5>
+                          <p className="menu-desc">{item.description}</p>
+                          <p>💰 Tax Rate: {item.tax_rate}%</p>
+                        <p>🏷️ Discount: {item.discount}%</p>
+                        <p>⭐ Rating: {item.rating ? item.rating.toFixed(1) : "N/A"} / 10</p>
+                        </div>
+                        <div className="menu-action">
+                          <div className="price-info">
+                            <span className="menu-price">₹{basePrice.toFixed(2)}</span>
+                            
+                            <span className="menu-discount ms-2">After Discount: ₹{priceAfterDiscount.toFixed(2)}</span>
+                          </div>
+                          <Button variant="warning" className="add-btn" onClick={() => handleAdd(item)}>
+                            <i className="ri-add-circle-line me-1"></i>Add
+                          </Button>
+                        </div>
                       </div>
-                      <div className="menu-action">
-                        <span className="menu-price">₹{item.price}</span>
-                        <Button variant="warning" className="add-btn" onClick={() => handleAdd(item)}>
-                          <i className="ri-add-circle-line me-1"></i>Add
-                        </Button>
-                      </div>
-                    </div>
-                  ))
+                    );
+                  })
                 )}
               </div>
             ))}
@@ -194,7 +215,7 @@ export default function TakeOrder() {
                   </div>
                 </div>
                 <div className="summary-right">
-                  <span>₹{item.price * item.qty}</span>
+                  <span>₹{(item.price * item.qty).toFixed(2)}</span>
                   <Button size="sm" variant="outline-danger" onClick={() => removeItem(item.food_name)}>
                     <i className="ri-delete-bin-line"></i>
                   </Button>
@@ -203,7 +224,7 @@ export default function TakeOrder() {
             ))}
 
             <hr />
-            <h5>Total: ₹{total}</h5>
+            <h5>Total: ₹{total.toFixed(2)}</h5>
             <Button
               variant="warning"
               className="w-100 mt-2 place-btn"

@@ -93,7 +93,7 @@ export default function Emp() {
 
 return (
   <div style={{ padding: "20px" }}>
-    <h2>👷 Employee List</h2>
+    <h2 >👷 Employee List</h2>
 
     {/* 📋 Employee Table FIRST */}
     <table border="1" cellPadding="10" style={{ width: "100%", marginBottom: "20px" }}>

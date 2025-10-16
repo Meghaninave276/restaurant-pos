@@ -6,7 +6,7 @@ import "./Reports.css";
 
 export default function Reports() {
   return (
-    <div className="reports-page container py-4">
+    <div className="reports-page ms-4 py-4">
       {/* ======= TOP METRIC CARDS ======= */}
       <Row className="g-4 mb-4">
         <Col md={3} sm={6}>

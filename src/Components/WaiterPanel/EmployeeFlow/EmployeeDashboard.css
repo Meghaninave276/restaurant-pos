@@ -22,26 +22,23 @@
   box-shadow: 3px 0 25px rgba(212, 175, 55, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* keeps logout at bottom */
+  justify-content: space-between;
   padding: 30px 22px;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   z-index: 10;
+  animation: slideInLeft 0.8s ease;
 }
 
+/* ---------- Brand ---------- */
 .brand {
   text-align: center;
-  margin-bottom: 30px; /* space between logo and menu */
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  padding-bottom: 18px;
+  margin-bottom: 25px;
 }
-
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 
 .brand img {
   width: 180px;
@@ -55,7 +52,11 @@
 }
 
 /* ---------- Menu ---------- */
-
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
 .menu button {
   width: 100%;

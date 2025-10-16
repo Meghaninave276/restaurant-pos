@@ -43,20 +43,22 @@ export default function Login() {
       return false;
     });
 
-    if (matchedUser) {
-      alert(`✅ ${role.toUpperCase()} Login Successful!`);
-      setError("");
+ if (matchedUser) {
+  alert(`✅ ${role.toUpperCase()} Login Successful!`);
+  setError("");
 
-      // 🔐 Save Auth Flags
-      localStorage.setItem("auth", "true");
-      localStorage.setItem("role", matchedUser.role);
+  // 🔐 Save Auth Flags
+  localStorage.setItem("auth", "true");
+  localStorage.setItem("role", matchedUser.role);
+  localStorage.setItem("loggedInUserId", matchedUser.id.toString());
+  localStorage.setItem("loggedInUserRole", matchedUser.role);
 
-      if (matchedUser.role === "manager") {
-        navigate("/manager");
-      } else {
-        navigate("/dashboard");
-      }
-    } else {
+  if (matchedUser.role === "manager") {
+    navigate("/manager");
+  } else {
+    navigate("/dashboard");
+  }
+} else {
       setError("❌ Invalid credentials or wrong role selected.");
     }
   };

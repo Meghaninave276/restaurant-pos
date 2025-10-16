@@ -1,0 +1,110 @@
+/* ====== PAGE CONTAINER ====== */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background-color: #faf9f8;
+  padding: 30px 20px;
+  border-radius: 12px;
+}
+
+/* ====== HEADING ====== */
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* ====== EMPTY STATE ====== */
+p {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+}
+
+/* ====== ORDER LIST ====== */
+.list-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ====== ORDER ITEM ====== */
+.list-group-item {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list-group-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.list-group-item h5 {
+  font-size: 18px;
+  color: #ff7a00;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.list-group-item p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.list-group-item ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.list-group-item ul li {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+/* ====== STATUS STYLING ====== */
+.list-group-item p:last-of-type {
+  font-weight: 600;
+  color: #007bff; /* Default status color */
+}
+
+/* Optional: Different colors based on order status */
+.list-group-item p:last-of-type.pending {
+  color: #ff9800;
+}
+
+.list-group-item p:last-of-type.completed {
+  color: #28a745;
+}
+
+.list-group-item p:last-of-type.cancelled {
+  color: #dc3545;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .list-group-item h5 {
+    font-size: 16px;
+  }
+
+  .list-group-item p,
+  .list-group-item ul li {
+    font-size: 13px;
+  }
+}

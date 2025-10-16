@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addMenuItem } from "../../slices/resslice";
+import { addMenuItem, updateMenuItem } from "../../slices/resslice";
 import "../Addmenu/Addmenu.css";
- // reuse same styles or create separate
 
-export default function Addmenuform({ closeForm }) {
+export default function Addmenuform({ closeForm, editingItem }) {
   const dispatch = useDispatch();
+
   const [newMenuItem, setNewMenuItem] = useState({
     food_name: "",
     category: "",
@@ -15,10 +15,18 @@ export default function Addmenuform({ closeForm }) {
     image1: "",
   });
 
+  useEffect(() => {
+    if (editingItem) setNewMenuItem(editingItem);
+  }, [editingItem]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addMenuItem({ ...newMenuItem, id: Date.now() })); // temporary ID
-    closeForm(); // close the form
+    if (editingItem) {
+      dispatch(updateMenuItem(newMenuItem));
+    } else {
+      dispatch(addMenuItem({ ...newMenuItem, id: Date.now() }));
+    }
+    closeForm();
   };
 
   return (
@@ -62,7 +70,7 @@ export default function Addmenuform({ closeForm }) {
         value={newMenuItem.image1}
         onChange={(e) => setNewMenuItem({ ...newMenuItem, image1: e.target.value })}
       />
-      <button type="submit">Add Item</button>
+      <button type="submit">{editingItem ? "Update Item" : "Add Item"}</button>
     </form>
   );
 }

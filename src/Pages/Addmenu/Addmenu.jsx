@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMenu } from "../../slices/resslice";
+import { fetchMenu, deleteMenuItem } from "../../slices/resslice";
 import Addmenuform from "../Addmenuform/Addmenuform";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import "./Addmenu.css";
+
 export default function Addmenu() {
   const dispatch = useDispatch();
   const { menu, isLoading, error } = useSelector((state) => state.restaurant);
@@ -14,22 +13,22 @@ export default function Addmenu() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showFiltered, setShowFiltered] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [expandedItems, setExpandedItems] = useState([]); // to track expanded items
+  const [editingItem, setEditingItem] = useState(null); // track editing item
+  const [expandedItems, setExpandedItems] = useState([]);
 
-const categories = [
-  { name: "All", icon: "📋" },
-  { name: "Pizza", icon: "🍕" },
-  { name: "Non-Veg", icon: "🍗" },
-  { name: "Drinks", icon: "🥤" },
-  { name: "Burger", icon: "🍔" },
-  { name: "Chinese", icon: "🥡" },
-  { name: "Paneer", icon: "🧀" },
-  { name: "Dessert", icon: "🍰" },
-  { name: "Starter", icon: "🍽️" },
-  { name: "Cucumber", icon: "🥒" },
-  { name: "Biryani", icon: "🍛" }
-];
-
+  const categories = [
+    { name: "All", icon: "📋" },
+    { name: "Pizza", icon: "🍕" },
+    { name: "Non-Veg", icon: "🍗" },
+    { name: "Drinks", icon: "🥤" },
+    { name: "Burger", icon: "🍔" },
+    { name: "Chinese", icon: "🥡" },
+    { name: "Paneer", icon: "🧀" },
+    { name: "Dessert", icon: "🍰" },
+    { name: "Starter", icon: "🍽️" },
+    { name: "Cucumber", icon: "🥒" },
+    { name: "Biryani", icon: "🍛" }
+  ];
 
   useEffect(() => {
     dispatch(fetchMenu());
@@ -53,6 +52,22 @@ const categories = [
     );
   };
 
+  const handleEdit = (item) => {
+    setEditingItem(item);
+    setShowAddForm(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      dispatch(deleteMenuItem(id));
+    }
+  };
+
+  const handleCloseForm = () => {
+    setEditingItem(null);
+    setShowAddForm(false);
+  };
+
   return (
     <div className="menu-page">
       <div className="top-section">
@@ -70,76 +85,82 @@ const categories = [
         </div>
 
         <div className="category-scroll">
-         {categories.map((cat) => (
-  <button
-    key={cat.name}
-    className={`category-btn ${selectedCategory === cat.name ? "active" : ""}`}
-    onClick={() => handleCategoryClick(cat.name)}
-  >
-    <span style={{ marginRight: "5px" }}>{cat.icon}</span>
-    {cat.name}
-  </button>
-))}
-
+          {categories.map((cat) => (
+            <button
+              key={cat.name}
+              className={`category-btn ${selectedCategory === cat.name ? "active" : ""}`}
+              onClick={() => handleCategoryClick(cat.name)}
+            >
+              <span style={{ marginRight: "5px" }}>{cat.icon}</span>
+              {cat.name}
+            </button>
+          ))}
         </div>
       </div>
 
-      {showAddForm && <Addmenuform closeForm={() => setShowAddForm(false)} />}
+      {showAddForm && (
+        <Addmenuform closeForm={handleCloseForm} editingItem={editingItem} />
+      )}
 
       {isLoading && <p>Loading menu...</p>}
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
 
-    <div className="container mt-4">
-  {showFiltered ? (
-    filteredMenu.length === 0 ? (
-      <p className="text-center">No items match your search.</p>
-    ) : (
-      <div className="row g-4">
-        {filteredMenu.map(item => (
-          <div className="col-lg-3 col-md-4 col-sm-6" key={item.id}>
-            <div className="card h-100 shadow-sm border-0">
-              <img
-                src={item.image1}
-                alt={item.food_name}
-                className="card-img-top"
-                style={{ height: "180px", objectFit: "cover" }}
-              />
-              <div className="card-body text-center">
-                <h5 className="card-title">{item.food_name}</h5>
-                <p className="card-text text-muted small">{item.description}</p>
-                <p className="fw-bold text-warning mb-2">
-                  ₹{item.price}{" "}
-                  {item.originalPrice && (
-                    <span className="text-decoration-line-through text-secondary ms-1">
-                      ₹{item.originalPrice}
-                    </span>
-                  )}
-                </p>
-                <button
-                  className="wishlist-btn"
-                  onClick={() => toggleDetails(item.id)}
-                >
-                  {expandedItems.includes(item.id) ? "Hide Details" : "View More"}
-                </button>
-              </div>
+      <div className="mt-4">
+        {showFiltered ? (
+          filteredMenu.length === 0 ? (
+            <p className="text-center">No items match your search.</p>
+          ) : (
+            <div className="row g-4">
+              {filteredMenu.map(item => (
+                <div className="col-lg-3 col-md-4 col-sm-6" key={item.id}>
+                  <div className="card h-100 shadow-sm border-0">
+                    <img
+                      src={item.image1}
+                      alt={item.food_name}
+                      className="card-img-top"
+                      style={{ height: "180px", objectFit: "cover" }}
+                    />
+                    <div className="card-body text-center">
+                      <h5 className="card-title">{item.food_name}</h5>
+                      <p className="card-text text-muted small">{item.description}</p>
+                      <p className="fw-bold text-warning mb-2">
+                        ₹{item.price}{" "}
+                        {item.originalPrice && (
+                          <span className="text-decoration-line-through text-secondary ms-1">
+                            ₹{item.originalPrice}
+                          </span>
+                        )}
+                      </p>
 
-              {expandedItems.includes(item.id) && (
-                <div className="">
-                  <p>💰 Tax Rate: {item.tax_rate}%</p>
-                  <p>🏷️ Discount: {item.discount}%</p>
-                  <p>⭐ Rating: {item.rating ? item.rating.toFixed(1) : "N/A"} / 10</p>
+                      <div className="d-flex justify-content-center gap-2">
+                        <button className="btn btn-sm btn-primary" onClick={() => handleEdit(item)}>Edit ✏️</button>
+                        <button className="btn btn-sm btn-danger" onClick={() => handleDelete(item.id)}>Delete 🗑️</button>
+                      </div>
+
+                      <button
+                        className="wishlist-btn mt-2"
+                        onClick={() => toggleDetails(item.id)}
+                      >
+                        {expandedItems.includes(item.id) ? "Hide Details" : "View More"}
+                      </button>
+                    </div>
+
+                    {expandedItems.includes(item.id) && (
+                      <div className="p-2 border-top">
+                        <p>💰 Tax Rate: {item.tax_rate}%</p>
+                        <p>🏷️ Discount: {item.discount}%</p>
+                        <p>⭐ Rating: {item.rating ? item.rating.toFixed(1) : "N/A"} / 10</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              )}
+              ))}
             </div>
-          </div>
-        ))}
+          )
+        ) : (
+          <p className="text-center mt-4">🔎 Click "Filter" to see the menu.</p>
+        )}
       </div>
-    )
-  ) : (
-    <p className="text-center mt-4">🔎 Click "Filter" to see the menu.</p>
-  )}
-</div>
-
     </div>
   );
 }

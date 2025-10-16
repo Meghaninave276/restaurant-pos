@@ -74,18 +74,13 @@ export default function EmployeeDashboard() {
     </button>
 
     <button
-      onClick={() => navigate("/dashboard/history")}
-      className={isActive("/dashboard/history") ? "active" : ""}
+      onClick={() => navigate("/dashboard/profile")}
+      className={isActive("/dashboard/profile") ? "active" : ""}
     >
-      <RiHistoryLine /> <span>History</span>
+      <RiUserLine /> <span>Profile</span>
     </button>
 
-    <button
-      onClick={() => navigate("/dashboard/settings")}
-      className={isActive("/dashboard/settings") ? "active" : ""}
-    >
-      <RiSettings3Line /> <span>Settings</span>
-    </button>
+ 
   </nav>
 
   {/* 🌟 Logout at bottom */}
